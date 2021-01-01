@@ -14,7 +14,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="boogle-maps" target="11" />
-      <module name="eureka" target="15" />
+      <module name="eureka" target="1.8" />
       <module name="pricing-service" target="11" />
       <module name="vehicles-api" target="11" />
     </bytecodeTargetLevel>

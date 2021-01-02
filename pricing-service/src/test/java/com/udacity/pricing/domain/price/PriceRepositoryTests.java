@@ -1,7 +1,6 @@
 package com.udacity.pricing.domain.price;
 
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PriceRepositoryTests {
 
     protected Price price;
-    protected BigDecimal expectedValue = new BigDecimal(10.50);
+    protected BigDecimal expectedValue = new BigDecimal(25000.00);
 
     @Autowired
     PriceRepository priceRepository;
@@ -37,7 +36,7 @@ public class PriceRepositoryTests {
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void DeleteTest(){
+    public void DeleteTest() {
         Long newId = 2L;
         priceRepository.save(new Price("USD", new BigDecimal(50), newId));
         Price retrievedPrice = priceRepository.findById(newId).get();

@@ -98,9 +98,9 @@ public class CarControllerTest {
         Car car = getCar();
         mvc.perform(get(new URI("/cars")))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$._embedded.carList", hasSize(1)))
-                .andExpect(jsonPath("$._embedded.carList[0].condition", is(car.getCondition().toString())))
-                .andExpect(jsonPath("$._embedded.carList[0].details.model", is(car.getDetails().getModel())));
+                .andExpect(jsonPath("_embedded.carList", hasSize(1)))
+                .andExpect(jsonPath("_embedded.carList[0].condition", is(car.getCondition().toString())))
+                .andExpect(jsonPath("_embedded.carList[0].details.model", is(car.getDetails().getModel())));
     }
 
     /**
@@ -114,8 +114,8 @@ public class CarControllerTest {
 
         mvc.perform(get(new URI("/cars/1")))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.details.model", is(car.getDetails().getModel())));
+                .andExpect(jsonPath("id", is(1)))
+                .andExpect(jsonPath("details.model", is(car.getDetails().getModel())));
     }
 
     /**
@@ -127,7 +127,7 @@ public class CarControllerTest {
     public void deleteCar() throws Exception {
         mvc.perform(
                 delete(new URI("/cars/1")))
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().isNoContent());
     }
 
     /**

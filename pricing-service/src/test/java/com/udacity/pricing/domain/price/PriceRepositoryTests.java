@@ -17,31 +17,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 public class PriceRepositoryTests {
 
-    protected Price price;
-    protected BigDecimal expectedValue = new BigDecimal(25000.00);
+    protected BigDecimal expected = new BigDecimal("25000.00");
 
     @Autowired
     PriceRepository priceRepository;
 
     @Before
     public void setup() {
-        price = new Price("USD", expectedValue, 1L);
+        Price price = new Price("USD", expected, 1L);
         priceRepository.save(price);
     }
 
     @Test
     public void findByIdTest() {
         Price price = priceRepository.findById(1L).get();
-        assertThat(price.getPrice()).isEqualTo(expectedValue);
+        assertThat(price.getPrice()).isEqualTo(expected);
     }
 
     @Test(expected = NoSuchElementException.class)
     public void DeleteTest() {
-        Long newId = 2L;
-        priceRepository.save(new Price("USD", new BigDecimal(50), newId));
-        Price retrievedPrice = priceRepository.findById(newId).get();
-        assertThat(retrievedPrice.getVehicleId()).isEqualTo(newId);
+        Long id = 2L;
+        priceRepository.save(new Price("USD", new BigDecimal("35000.00"), id));
+        Price retrievedPrice = priceRepository.findById(id).get();
+        assertThat(retrievedPrice.getVehicleId()).isEqualTo(id);
         priceRepository.delete(retrievedPrice);
-        priceRepository.findById(newId).get();
+        priceRepository.findById(id).get();
     }
 }
